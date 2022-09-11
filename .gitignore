@@ -1,0 +1,10 @@
+venv
+.env
+pyvenv.cfg
+.idea
+.vscode
+__pycahe__/
+*.py[cod]
+*.so
+bin
+lib
