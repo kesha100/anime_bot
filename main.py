@@ -1,9 +1,7 @@
-import fsm_admin_menu
 from config import dp
 from aiogram.utils import executor
 import logging
-from handlers import client, callback, extra, admin, fsm_anketa
-
+from handlers import client, callback, extra, fsm_admin_menu
 
 client.register_handlers_client(dp)
 callback.register_handlers_callback(dp)
