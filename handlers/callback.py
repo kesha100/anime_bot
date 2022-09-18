@@ -1,7 +1,6 @@
-from aiogram import Dispatcher
+from aiogram import types, Dispatcher
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import dp, bot
-from aiogram import types
 
 
 async def quiz_2(call: types.CallbackQuery):
@@ -34,7 +33,7 @@ async def quiz_3(call: types.CallbackQuery):
     question = 'From which anime is this character?'
     answers = [
         'Attack on titan',
-        'Hailkyu',
+        'Haikyu',
         'Hunter x hunter',
         'Evangelion'
     ]

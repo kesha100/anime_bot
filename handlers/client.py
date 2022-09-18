@@ -44,12 +44,16 @@ async def send_meme(message: types.Message):
 
 
 async def dice_game(message: types.Message):
+    await bot.send_message(message.chat.id, 'gamer 1 is bot')
+    await bot.send_message(message.chat.id, 'gamer 2 is you')
     gamer1 = await bot.send_dice(message.chat.id, emoji='🎲')
     gamer2 = await bot.send_dice(message.chat.id, emoji='🎲')
     if gamer1.dice.value > gamer2.dice.value:
         await bot.send_message(message.chat.id, 'winner is gamer 1')
     elif gamer1.dice.value == gamer2.dice.value:
         await bot.send_message(message.chat.id, "winner is 'friendship")
+    elif gamer2.dice.value > gamer1.dice.value:
+        await bot.send_message(message.chat.id, 'winner is gamer2')
 
 
 def register_handlers_client(dp: Dispatcher):
