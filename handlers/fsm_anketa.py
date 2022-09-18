@@ -36,29 +36,38 @@ async def load_name(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data['name'] = message.text
     await FSMAdmin.next()
-    await message.answer('How old are you?')
+    await message.answer("How old are you?")
 
 
 async def load_age(message: types.Message, state: FSMContext):
     try:
-        if 2022 - int(message.text) > 100:
-            await message.answer('u are too old')
-        elif 2022 - int(message.text) < 14:
-            await message.answer('too young!')
+        if int(message.text) < 1950 or int(message.text) > 2015:
+            await message.answer('u can come')
         else:
             async with state.proxy() as data:
-                data['age'] = message.text
+                data['age'] = 2022 - int(message.text)
             await FSMAdmin.next()
             await message.answer('Which gender?')
     except:
         await message.answer('write digits!')
 
 
+async def load_gender(message: types.Message, state=FSMContext):
+    async with state.proxy() as data:
+        data['gender'] = message.text
+    await FSMAdmin.next()
+    await message.answer('Which region?')
+
+
+async def load_region(message: types.Message, state=FSMContext):
+    async with state.proxy() as data:
+        data['region'] = message.text
+    await FSMAdmin.next()
 
 
 
 def register_handlers_fsm_anketa(dp: Dispatcher):
-    dp.register_message_handler(fsm_start, commands=['reg'])
-    dp.register_message_handler(load_photo, state=FSMAdmin.photo)
+    # dp.register_message_handler(fsm_start, commands=['reg'])
+    dp.register_message_handler(load_photo, state=FSMAdmin.photo, content_types=['photo'])
     dp.register_message_handler(load_name, state=FSMAdmin.name)
     dp.register_message_handler(load_age, state=FSMAdmin.age)

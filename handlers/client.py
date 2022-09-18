@@ -3,8 +3,10 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import bot, dp
 from aiogram import types
 import random
+from keyboards.client_kb import start_markup
 
-
+async def command_start(message: types.Message):
+    message.answer(f'HI {message.chat.id}', reply_markup=start_markup)
 async def quiz_1(message: types.Message):
     markup = InlineKeyboardMarkup()
     button_call_1 = InlineKeyboardButton('NEXT', callback_data='button_call_1')
@@ -57,6 +59,7 @@ async def dice_game(message: types.Message):
 
 
 def register_handlers_client(dp: Dispatcher):
+    dp.register_message_handler(command_start, commands=['start'])
     dp.register_message_handler(quiz_1, commands=['quiz'])
     dp.register_message_handler(send_meme, commands=['meme'])
     dp.register_message_handler(dice_game, commands=['dice'])
