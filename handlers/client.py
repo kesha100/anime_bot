@@ -3,10 +3,10 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import bot, dp
 from aiogram import types
 import random
-from keyboards.client_kb import start_markup
+from database.db import sql_command_random
 
-async def command_start(message: types.Message):
-    message.answer(f'HI {message.chat.id}', reply_markup=start_markup)
+
+
 async def quiz_1(message: types.Message):
     markup = InlineKeyboardMarkup()
     button_call_1 = InlineKeyboardButton('NEXT', callback_data='button_call_1')
@@ -58,8 +58,12 @@ async def dice_game(message: types.Message):
         await bot.send_message(message.chat.id, 'winner is gamer2')
 
 
+async def show_random_user(message: types.Message):
+    await sql_command_random(message)
+
+
 def register_handlers_client(dp: Dispatcher):
-    dp.register_message_handler(command_start, commands=['start'])
     dp.register_message_handler(quiz_1, commands=['quiz'])
     dp.register_message_handler(send_meme, commands=['meme'])
     dp.register_message_handler(dice_game, commands=['dice'])
+    dp.register_message_handler(show_random_user, commands=['get'])
