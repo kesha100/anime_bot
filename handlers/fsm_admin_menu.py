@@ -8,6 +8,7 @@ from config import ADMINS
 from config import bot
 from database import db
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+# from database.db import sql_command_insert
 
 
 class FSMAdmin(StatesGroup):
@@ -57,6 +58,13 @@ async def load_price(message: types.Message, state: FSMContext):
     await db.sql_command_insert(state)
     await state.finish()
     await message.answer('Thank you for adding new food for the menu! Foods are really даамдуу!')
+
+
+# async def valid(id):
+#     if id in ADMINS:
+#         db.sql_command_insert()
+#     else:
+#         await bot.send_message('only ADMINS can add new menu!')
 
 
 async def cancel_registration(message: types.Message, state: FSMContext):
