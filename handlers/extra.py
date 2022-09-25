@@ -12,10 +12,10 @@ import time
 #
 #     else:
 #         await bot.send_message(message.chat.id, message.text)
-
-    # if message.text.startswith('!'):
-    #     await bot.pin_chat_message(message.chat.id, message.message_id)
-
+#
+#     if message.text.startswith('!'):
+#         await bot.pin_chat_message(message.chat.id, message.message_id)
+#
 
 async def timer(message: types.Message):
     # sec = int(message.text)
@@ -25,7 +25,8 @@ async def timer(message: types.Message):
     if int(message.text[1::]) > 359999:
         await bot.send_message(message.from_user.id, 'i am not a fucking calculator, use your own brains!')
     else:
-        await bot.send_message(message.from_user.id, res)
+        if message.text.startswith('='):
+            await bot.send_message(message.from_user.id, res)
 
 
 def register_handlers_extra(dp: Dispatcher):
