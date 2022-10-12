@@ -8,3 +8,4 @@ TOKEN = config('TOKEN')
 bot = Bot(TOKEN)
 dp = Dispatcher(bot=bot, storage=storage)
 ADMINS = [846412343, ]
+URL = 'https://git.heroku.com/keshabotanime.git'
